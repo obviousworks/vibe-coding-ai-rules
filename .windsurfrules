@@ -1,9 +1,3 @@
-# Project-Specific AI Coding Rules for Vibe-Coding
-
-These rules are specific to a "VibeCode" project and supplement the global AI coding rules.
-
-## Project Context
-
 ### Project Description
 
 **"FocusForge"** - An advanced Pomodoro timer application with AI-driven productivity insights, customizable work rhythms, and team synchronization capabilities for distributed teams.
@@ -173,14 +167,3 @@ These rules are specific to a "VibeCode" project and supplement the global AI co
   * Feature-based folder structure within modules
   * Atomic design principles for UI components
   
-* **Known Pitfalls/Challenges:**
-  * Real-time collaboration requires careful state management
-  * Analytics processing can become bottleneck under load
-  * Browser extension integration has strict security constraints
-  * Window management across multiple monitors needs special handling
-  
-* **Performance Considerations:**
-  * Virtualize large lists and code editors
-  * Optimize bundle size with code splitting
-  * Implement progressive loading for analytics dashboards
-  * Use web workers for CPU-intensive operations
