@@ -6,7 +6,9 @@ The Ultimate Vibe Coding Guide for AI IDEs like Windsurf, Cursor etc. – AI-opt
 ### 🚀 This repository contains:
 
 - A complete Vibe Coding Ruleset for optimized AI coding workflows.
-- Detailed .windsurfrules and global_rules.md configuration files.
+- A detailed global_rules.md configuration file, for global vibe-coding seetings.
+- An example of a projec specific vibe-coding file: .windsurfrules
+- A super AI / LLM prompt, which helps you to adapt the project-specific config file (.windsurfrules) to your needs and projects
 - Best practices for clean, efficient, and controlled AI-driven development.
 
 #### ⚡ Stay in control. Code smarter. Deploy faster.
