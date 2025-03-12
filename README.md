@@ -1,4 +1,4 @@
-# Vibe Ccoding AI Rules
+# Vibe Coding AI Rules
 The Ultimate Vibe Coding Guide for AI IDEs like Windsurf, Cursor etc. – AI-optimized rules, best practices, and configuration files for efficient and controlled AI-powered coding.
 
 ## Level up your AI coding with Windsurf, Cursor or other AI IDEs! 
