@@ -51,3 +51,8 @@ Any project-specific patterns or architectural principles
 
 Please format the output as a complete Markdown file that I can use directly as my .windsurfrules file in WindSurf. Include all sections from the example (Project Context, Technology Stack, Project Structure, etc.) but tailored to my specific project needs.
 Use a structured approach with clear headings, bulleted lists, and code blocks where appropriate. Include both high-level guidelines and specific technical details to provide comprehensive guidance for the AI.
+
+Here is the a special .windsurfrules file for a Pomodoro Timer App: 
+'''
+{{conten of the .windsurfrules file))
+'''
