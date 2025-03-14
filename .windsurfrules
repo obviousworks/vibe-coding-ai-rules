@@ -1,7 +1,10 @@
+<project_description>
 ### Project Description
 
 **"FocusForge"** - An advanced Pomodoro timer application with AI-driven productivity insights, customizable work rhythms, and team synchronization capabilities for distributed teams.
+</project_description>
 
+<main_goals>
 ### Main Goals
 
 - Develop an adaptive Pomodoro system that learns user productivity patterns.
@@ -9,12 +12,16 @@
 - Implement team synchronization for coordinated deep work sessions.
 - Build a comprehensive analytics dashboard with mood tracking, productivity scores, and focus metrics.
 - Create a gamified achievement system to reward consistent deep work habits.
+</main_goals>
 
+<architecture_overview>
 ### Architecture Overview
 
 - **Type:** Progressive Web App (PWA) with offline capabilities.
 - **Backend:** Serverless architecture for scalability and real-time synchronization.
+</architecture_overview>
 
+<technology_stack>
 ## Technology Stack
 
 * **Primary Programming Languages:**
@@ -44,8 +51,11 @@
   * Axios (use native fetch API)
   * jQuery or other legacy libraries
   * Material UI (use Radix UI primitives with custom styling)
+</technology_stack>
 
+<project_structure>
 ## Project Structure Example
+
 
 * **Directory Structure:**
 ```
@@ -79,13 +89,14 @@
 │   ├── docker/
 │   └── scripts/
 ```
-
 * **Reusable Components/Modules:**
   * `packages/ui` - Component library with design system primitives
   * `packages/utils/analytics` - Analytics tracking utilities
   * `packages/utils/formatting` - Data formatting helpers
   * `packages/utils/validation` - Input validation functions
+</project_structure>
 
+<coding_style>
 ## Coding Style and Conventions
 
 * **Language-Specific Style Guides:**
@@ -121,7 +132,9 @@
   * Document all environment variables in README.md
   # Document all important steps how to deploy, install the application in README.md, keep it up to date
   * Group variables by service/purpose with prefixes
+</coding_style>
 
+<workflow>
 ## Workflow
 
 * **Testing Strategy:**
@@ -141,7 +154,9 @@
   * Bugfix branches: `fix/issue-description`
   * Release branches: `release/v1.2.3`
   * Test AI changes in separate branches: `ai/description`
+</workflow>
 
+<ai_interaction>
 ## AI Interaction
 
 * **Focus in Requests:**
@@ -158,7 +173,9 @@
   * Tag rule applications with abbreviations: [SF], [DRY], etc.
   * Explain reasoning when choosing between conflicting rules
   * Suggest rule improvements if patterns emerge
+</ai_interaction>
 
+<additional_notes>
 ## Additional Notes
 
 * **Important Patterns/Architectural Principles:**
@@ -166,4 +183,4 @@
   * Command/Query Responsibility Segregation (CQRS)
   * Feature-based folder structure within modules
   * Atomic design principles for UI components
-  
+</additional_notes>
