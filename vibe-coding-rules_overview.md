@@ -7,6 +7,7 @@
 - Define **project rules** in the IDE to control AI behavior.
 
 ## Coding Workflow
+- **Clarify the problem first** -- no code without a clear problem statement. Ask for clarification instead of guessing.
 - Start with **detailed specs** before generating AI code.
 - Keep AI requests **small and precise** to avoid unnecessary changes.
 - Run **tests frequently** to verify AI-generated code.
@@ -14,7 +15,8 @@
 - Monitor **AI chat context size**, restart sessions when performance drops.
 
 ## Code Quality & Structure
-- Prefer **simple solutions**, avoid over-engineering.
+- Prefer **simple solutions**, avoid over-engineering. Ensure basic correctness before adding abstractions.
+- **Self-review generated code** -- argue against your own solution, check for simpler alternatives. Prefer refactoring over adding code when fixing errors.
 - Eliminate **code duplication**, reuse existing functions where possible.
 - Maintain **separate environments** for DEV, TEST, and PROD.
 - Only apply **requested changes**, avoid modifying unrelated parts.
