@@ -1,6 +1,6 @@
-# Global AI Coding Rules for Windsurf
+# Global AI Coding Rules for Agentic Coding
 
-These rules establish universal standards and preferences that apply across all projects developed with Windsurf AI assistance.
+These rules establish universal standards and preferences that apply across all projects developed with Agentic Coding AIs, like Claude Code, Windsurf AI, Cursor etc.
 
 ## Core Principles
 
