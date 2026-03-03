@@ -1,0 +1,65 @@
+# FocusFlow - AI-Powered Productivity Platform
+
+## Project Overview
+FocusFlow is an advanced productivity SaaS platform combining Pomodoro technique, AI-driven insights, team synchronization, and analytics for remote teams.
+
+**Architecture**: Microservices with event-driven architecture
+**Scale**: Series A startup targeting 10K+ MAU
+
+## Tech Stack
+- **Frontend**: TypeScript 5.3+, Next.js 14.2 (App Router), React 18.3, TailwindCSS 3.4
+- **Backend**: NestJS 10.3, FastAPI 0.110+ (Python analytics)
+- **Database**: PostgreSQL 16 (Prisma), MongoDB 7.0, Redis 7.2+
+- **Testing**: Vitest 1.4, Playwright 1.42, pytest 8.1
+- **Package Manager**: pnpm 9.x
+
+### DO NOT Use
+Redux, Axios, Moment.js, CSS-in-JS, GraphQL
+
+## Core Principles
+1. **Problem Clarity First**: Clarify intent before generating code
+2. **Simplest Fit**: Choose simplest viable solution — justify complexity
+3. **Repair Protocol**: Understand root cause → fix → verify → add test
+4. **Security First**: Validate all input, no secrets in code, parameterized queries only
+
+## Code Style
+- Files: `kebab-case.tsx`, `snake_case.py`
+- Components: PascalCase, Functions: camelCase with verb prefixes
+- 2 spaces (TS), 4 spaces (Python)
+- Single quotes (TS), double quotes (Python)
+- Explicit return types, no `any`, strict mode
+
+## Security
+- Zod validation on client AND server, Pydantic for Python
+- NEVER concatenate SQL — Prisma parameterized queries only
+- NEVER store secrets in code — env vars only
+- JWT with RS256 algorithm pinning
+- Rate limiting: 100 req/min per user
+
+## Testing
+- 85% coverage for critical paths
+- Vitest (TS), Playwright (E2E), pytest (Python)
+- AAA pattern, mock external APIs
+- Key: `apps/web/lib/timer/__tests__/timer.test.ts`
+
+## Commands
+```bash
+pnpm install        # Install
+pnpm dev            # All services
+pnpm test           # Tests
+pnpm build          # Build
+```
+
+## Workflow
+- Atomic changes, conventional commits: `type(scope): description`
+- Branches: `feature/FOCUS-123-description`
+- Before PR: `pnpm lint && pnpm typecheck && pnpm test`
+
+## Key Files
+- `apps/web/middleware.ts` — Auth
+- `services/api/prisma/schema.prisma` — DB schema
+- `apps/web/lib/schemas/` — Zod schemas
+- `apps/web/styles/tokens.ts` — Design tokens
+
+## When Uncertain
+Ask clarifying questions. Propose plan for complex changes. Reference existing patterns.

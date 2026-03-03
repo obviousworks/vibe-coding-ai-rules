@@ -1,0 +1,78 @@
+# {{PROJECT_NAME}} - Cline Rules
+
+## Project Overview
+{{PROJECT_DESCRIPTION}}
+
+**Architecture**: {{ARCHITECTURE_TYPE}}
+**Language**: {{PRIMARY_LANGUAGE}} ({{LANGUAGE_VERSION}})
+**Framework**: {{PRIMARY_FRAMEWORK}}
+
+## Tech Stack
+- Frontend: {{FRONTEND_FRAMEWORKS}}
+- Backend: {{BACKEND_FRAMEWORKS}}
+- Database: {{DATABASE}}
+- Testing: {{TESTING_FRAMEWORK}}
+
+### DO NOT Use
+- {{BANNED_DEPENDENCY_1}} (use {{ALTERNATIVE_1}} instead)
+- {{BANNED_DEPENDENCY_2}} (use {{ALTERNATIVE_2}} instead)
+
+## Core Principles
+
+### Problem Clarity First (PCF)
+Always clarify intent before generating code. No code without clear requirements.
+
+### Simplicity First (SF)
+Choose the simplest viable solution. Complex patterns need justification.
+
+### Readability Priority (RP)
+Code must be immediately understandable by humans and AI.
+
+### Dependency Minimalism (DM)
+No new libraries without explicit request or compelling justification.
+
+### Security First (SecF)
+Validate all inputs, no secrets in code, defense in depth.
+
+### Test-Driven Thinking (TDT)
+Design all code to be testable from inception.
+
+## Code Style
+
+### Naming Conventions
+- Files: {{FILE_NAMING}}
+- Components: PascalCase
+- Functions: camelCase with verb prefixes
+- Variables: camelCase, booleans with is/has prefix
+- Constants: UPPER_SNAKE_CASE
+
+### Formatting
+- Indentation: {{INDENTATION}}
+- Line Length: {{LINE_LENGTH}} max
+- Quotes: {{QUOTE_STYLE}}
+- Semicolons: {{SEMICOLONS}}
+- Trailing commas in multi-line structures
+
+## Security Rules
+- Validate ALL user input with schema validation
+- NEVER concatenate SQL strings — use parameterized queries
+- NEVER store secrets in source code
+- Use environment variables for credentials
+- Sanitize HTML before rendering
+
+## Testing Standards
+- Arrange-Act-Assert pattern
+- Descriptive names: "should [behavior] when [condition]"
+- Mock external dependencies, not internal logic
+- Critical paths: minimum 80% coverage
+
+## Workflow
+- Atomic changes: small, self-contained modifications
+- Conventional commits: type(scope): description
+- Only modify files related to current task
+- Tag rule applications: [SF], [RP], [DM], etc.
+
+## When Uncertain
+- Ask clarifying questions before implementing
+- Reference existing patterns in the codebase
+- Start small and iterate

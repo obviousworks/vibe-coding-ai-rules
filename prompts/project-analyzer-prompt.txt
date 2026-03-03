@@ -1,0 +1,162 @@
+PROMPT: Analyze Project and Generate AI Coding Rules
+
+You are an expert at analyzing codebases and generating optimized AI coding assistant configurations. I want you to analyze my project and generate a comprehensive rules configuration.
+
+=== INSTRUCTIONS ===
+
+Please analyze the project in the current directory and generate an AGENTS.md (or IDE-specific config) based on what you find. Follow these steps:
+
+## Step 1: Project Discovery
+
+Examine the project to understand:
+
+1. **Package Configuration**
+   - Read `package.json`, `pyproject.toml`, `Cargo.toml`, `go.mod`, `pom.xml`, or equivalent
+   - Identify: project name, version, dependencies, dev dependencies, scripts
+
+2. **Technology Stack**
+   - Primary language(s) and version requirements
+   - Frameworks in use (check imports, configs)
+   - Database (look for ORM configs, migration files, connection strings)
+   - Testing framework (check test configs, test file patterns)
+   - Linter/formatter configs (`.eslintrc`, `.prettierrc`, `ruff.toml`, etc.)
+
+3. **Project Structure**
+   - Map the directory tree (top 3 levels)
+   - Identify: source code location, test location, config files, docs
+   - Detect: monorepo structure, microservices, standard layouts
+
+4. **Code Patterns**
+   - Sample 3-5 source files to understand coding style
+   - Check: naming conventions, import patterns, error handling
+   - Identify: design patterns (MVC, repository, service layer, etc.)
+   - Look for: existing documentation, README, CONTRIBUTING.md
+
+5. **Git Workflow**
+   - Check recent commit messages for commit format
+   - Look at branch naming from `git branch -a`
+   - Check for CI/CD configs (`.github/workflows/`, `.gitlab-ci.yml`, etc.)
+
+6. **Security Setup**
+   - Check for `.env.example` (environment variables)
+   - Look for auth middleware, validation schemas
+   - Check for security headers, CORS config
+
+## Step 2: Generate Configuration
+
+Based on your analysis, generate a configuration that includes:
+
+### Required Sections
+1. **Project Overview** - What you discovered about the project
+2. **Tech Stack** - Complete with specific versions found
+3. **Setup Commands** - Based on package manager and scripts found
+4. **Build & Dev Commands** - File-scoped (preferred) and project-wide
+5. **Code Style** - Based on actual patterns found in code
+6. **Project Structure** - Actual directory tree
+7. **Testing** - Framework, patterns, and how to run tests
+8. **Security** - Based on existing security setup
+9. **Git Workflow** - Based on actual commit history and CI config
+
+### Quality Rules
+- Only include rules that match what you actually found in the code
+- Reference real file paths from the project
+- Use actual dependency versions from lock files/configs
+- Match naming conventions from existing code, don't impose new ones
+- Identify "DO NOT USE" patterns based on what's NOT in the project
+
+## Step 3: Choose Output Format
+
+Generate the config in the format most appropriate for the project:
+
+- If `.cursorrules` or `.cursor/` exists → Generate Cursor format
+- If `.windsurfrules` exists → Generate Windsurf format
+- If `.github/copilot-instructions.md` exists → Generate Copilot format
+- If `CLAUDE.md` exists → Generate Claude Code format
+- If `.clinerules` exists → Generate Cline format
+- If none of the above → Generate universal AGENTS.md
+
+Or if the user specifies a preferred IDE, use that format.
+
+=== EXAMPLE OUTPUT STRUCTURE ===
+
+```markdown
+# [Detected Project Name]
+
+## Project Overview
+[Discovered description based on README, package.json description, etc.]
+
+**Architecture**: [Detected from directory structure]
+**Domain**: [Inferred from dependencies and code]
+**Scale**: [Inferred from infrastructure, dependencies]
+
+## Tech Stack
+
+### Core Technologies
+- **Language**: [Detected with version]
+- **Framework**: [Detected with version]
+- **Database**: [Detected from ORM/driver dependencies]
+- **Package Manager**: [Detected from lock file]
+
+### Key Dependencies
+[List from package.json/requirements.txt with versions]
+
+### Development Tools
+- **Linter**: [Detected from config files]
+- **Formatter**: [Detected from config files]
+- **Testing**: [Detected from test configs and dependencies]
+
+### Explicitly DO NOT Use
+[Inferred from what's NOT in the project or from .eslintrc rules]
+
+## Setup Commands
+```bash
+[Detected from package.json scripts, Makefile, etc.]
+```
+
+## Build and Development Commands
+
+### File-Scoped Commands (Preferred - Fast)
+```bash
+[Generated based on detected tools]
+```
+
+### Project-Wide Commands (Use Sparingly)
+```bash
+[From package.json scripts with estimated times]
+```
+
+## Code Style and Conventions
+[Detected from actual code samples]
+
+### Naming Conventions
+[Detected from file names, variable names, function names]
+
+### Formatting Rules
+[Detected from .prettierrc, .editorconfig, etc.]
+
+## Project Structure
+```
+[Actual directory tree]
+```
+
+**Key Files**:
+[Important files discovered during analysis]
+
+## Testing Instructions
+[Based on test framework and existing test patterns]
+
+## Security Considerations
+[Based on existing security setup]
+
+## Git Workflow
+[Based on commit history and CI config]
+
+## When Stuck or Uncertain
+1. Ask clarifying questions before implementing
+2. Reference existing patterns in: [detected pattern files]
+3. Start small and iterate
+```
+
+=== NOW ANALYZE ===
+
+Please analyze the current project and generate the appropriate configuration. Start by examining the project root and key configuration files.

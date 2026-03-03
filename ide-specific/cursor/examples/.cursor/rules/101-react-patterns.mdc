@@ -1,0 +1,34 @@
+---
+description: FocusFlow React component patterns
+globs: ["**/*.tsx", "**/*.jsx"]
+alwaysApply: false
+---
+
+# FocusFlow React Patterns
+
+## State Management
+- Local state: useState/useReducer
+- Server state: React Query 5.0
+- Global state: Zustand 4.5
+- URL state: nuqs
+
+## Component Guidelines
+- Use Radix UI primitives with custom TailwindCSS styling
+- Design tokens from `apps/web/styles/tokens.ts`
+- Error boundaries: `apps/web/components/ErrorBoundary.tsx`
+- Server actions for mutations: `apps/web/app/actions/`
+
+## Performance
+- Lazy load dashboard charts
+- Use react-window for long lists
+- Optimistic updates for timer operations
+- Route-based code splitting
+
+## Auth Pattern
+Follow `apps/web/middleware.ts` for authentication.
+All pages except `/auth/*` require authentication.
+
+## Good Examples
+- `apps/web/app/dashboard/components/TimerCard.tsx`
+- `apps/web/lib/hooks/use-timer.ts`
+- `services/api/src/services/ai/insights-generator.ts`

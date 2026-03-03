@@ -1,0 +1,169 @@
+PROMPT: Generate Custom AI IDE Rules Configuration
+
+I need you to create a comprehensive, production-ready rules configuration file for my project. I'll provide details about my project, and you'll generate a complete configuration tailored to my specific needs — in the correct format for my chosen AI IDE.
+
+=== STEP 1: CHOOSE YOUR AI IDE ===
+
+Which AI IDE or coding assistant do you use?
+
+1. **Cursor** → Generates `.cursor/rules/*.mdc` files (YAML frontmatter + Markdown)
+2. **Windsurf** → Generates `.windsurfrules` file (plain Markdown)
+3. **GitHub Copilot** → Generates `.github/copilot-instructions.md` + `.github/instructions/*.instructions.md` (YAML frontmatter + Markdown)
+4. **Claude Code** → Generates `CLAUDE.md` + `.claude/rules/*.md` (plain Markdown, concise)
+5. **Cline** → Generates `.clinerules/` folder with numbered Markdown files
+6. **Zed** → Generates `.rules` file (plain Markdown)
+7. **Universal AGENTS.md** → Generates `AGENTS.md` (works across all tools)
+
+My IDE choice: {{IDE_CHOICE}}
+
+=== STEP 2: PROJECT INFORMATION ===
+
+## Project Overview
+Project Name: {{PROJECT_NAME}}
+Brief Description: {{PROJECT_DESCRIPTION}}
+Architecture Type: {{ARCHITECTURE_TYPE}} (e.g., Monolith, Microservices, Serverless, JAMstack)
+Domain: {{DOMAIN}} (e.g., E-commerce, Healthcare, FinTech, SaaS)
+Scale/Stage: {{SCALE}} (e.g., MVP, Startup, Scale-up, Enterprise)
+
+## Technology Stack
+
+### Core Technologies
+Primary Programming Languages: {{PROGRAMMING_LANGUAGES}}
+(Example: TypeScript 5.x, Python 3.11+, Java 17, Go 1.21)
+
+Frameworks: {{FRAMEWORKS}}
+(Example: Next.js 14, FastAPI, Spring Boot, Express.js)
+
+Databases: {{DATABASES}}
+(Example: PostgreSQL 15, MongoDB 6, MySQL 8, Redis)
+
+Package Manager: {{PACKAGE_MANAGER}}
+(Example: npm, pnpm, yarn, pip, poetry, maven, gradle)
+
+### Key Dependencies
+List important libraries/frameworks with versions:
+{{KEY_DEPENDENCIES}}
+(Example: React 18.2, TailwindCSS 3.4, Prisma 5.x, FastAPI 0.110)
+
+### Development Tools
+Linter: {{LINTER}}
+Formatter: {{FORMATTER}}
+Type Checker: {{TYPE_CHECKER}}
+Testing Framework: {{TESTING_FRAMEWORK}}
+
+### Technologies to Explicitly Avoid
+{{TECHNOLOGIES_TO_AVOID}}
+(Example: Redux - use Zustand instead; Axios - use native fetch; jQuery - use modern JS)
+
+## Project Structure
+
+### Directory Structure
+Describe your project's folder organization:
+{{DIRECTORY_STRUCTURE}}
+
+### Key Directories
+{{KEY_DIRECTORIES}}
+
+## Development Guidelines
+
+### Coding Style Preferences
+{{CODING_STYLE}}
+
+### Naming Conventions
+{{NAMING_CONVENTIONS}}
+
+### Testing Strategy
+{{TESTING_STRATEGY}}
+
+### Git Workflow
+{{GIT_WORKFLOW}}
+
+## Performance Considerations
+{{PERFORMANCE_REQUIREMENTS}}
+
+## Security Requirements
+{{SECURITY_REQUIREMENTS}}
+
+## Deployment Process
+{{DEPLOYMENT_PROCESS}}
+
+## Known Challenges or Constraints
+{{KNOWN_CHALLENGES}}
+
+## Additional Context
+{{ADDITIONAL_CONTEXT}}
+
+=== STEP 3: GENERATION INSTRUCTIONS ===
+
+Based on the IDE choice and project information above, generate the configuration in the CORRECT FORMAT:
+
+### If Cursor:
+- Create separate `.mdc` files for each topic
+- Use YAML frontmatter with `description`, `globs`, and `alwaysApply` fields
+- Core rules (000-099): `alwaysApply: true`
+- File-specific rules (100-199): `globs: ["**/*.tsx"]` etc.
+- Each file should be 300-500 tokens
+
+### If Windsurf:
+- Create a single `.windsurfrules` file
+- Use structured Markdown sections with XML-style tags if desired
+- Include: Project Context, Tech Stack, Project Structure, Coding Style, Workflow, AI Interaction
+- Also suggest content for global_rules.md (Windsurf Settings)
+
+### If GitHub Copilot:
+- Create `copilot-instructions.md` (main file, always active)
+- Create `instructions/*.instructions.md` files with `applyTo` frontmatter
+- Use glob patterns for file-type-specific instructions
+
+### If Claude Code:
+- Create `CLAUDE.md` (concise, 800-1500 tokens — every line is a strong directive)
+- Create `.claude/rules/*.md` modular files (under 500 tokens each)
+- No YAML frontmatter — pure Markdown
+- Be more direct and imperative than other formats
+
+### If Cline:
+- Create `.clinerules/` folder with numbered files (01-, 02-, etc.)
+- Pure Markdown format
+- Numeric prefixes control loading order
+
+### If Zed:
+- Create a single `.rules` file
+- Plain Markdown format
+- Include all rules in one well-organized document
+
+### If Universal AGENTS.md:
+- Create a single `AGENTS.md` file
+- Follow the AGENTS.md standard structure
+- Tool-agnostic Markdown format
+- Target 1500-2500 tokens
+
+=== CONTENT REQUIREMENTS ===
+
+Regardless of IDE format, include these sections (adapted to the format):
+
+1. **Project Overview** - Purpose, architecture, domain, scale
+2. **Tech Stack** - All technologies with versions, DO NOT USE list
+3. **Setup Commands** - Installation, environment setup, dev server
+4. **Build Commands** - File-scoped (fast) AND project-wide (slow) with execution times
+5. **Code Style** - Language rules, naming, formatting, do's/don'ts with examples
+6. **Project Structure** - Directory tree, key files, architecture patterns
+7. **Testing** - Frameworks, commands, coverage requirements, patterns
+8. **Security** - Auth approach, input validation, secrets management
+9. **Git Workflow** - Branch naming, commit format, PR requirements
+10. **Safety & Permissions** - What AI can/cannot do without asking
+11. **Performance** - Optimization guidelines, specific requirements
+12. **When Stuck** - How to handle uncertainty, when to ask questions
+
+=== QUALITY GUIDELINES ===
+
+- **Token-efficient**: Don't repeat information, be concise
+- **Specific**: Use concrete examples from the project, not vague principles
+- **Actionable**: Every rule should be clear and enforceable
+- **Production-ready**: Based on real-world best practices
+- **Examples over descriptions**: Reference actual file patterns and code
+
+=== NOW GENERATE ===
+
+Please create the complete configuration based on my project information and IDE choice. Make it production-ready and immediately usable.
+
+If any critical information is missing, make reasonable assumptions and note them.

@@ -1,0 +1,150 @@
+<project_description>
+### Project Description
+
+**"FocusFlow"** - An AI-powered productivity SaaS platform combining Pomodoro technique, AI-driven insights, team synchronization, and analytics to optimize deep work and collaboration for remote teams.
+</project_description>
+
+<main_goals>
+### Main Goals
+
+- Develop an adaptive Pomodoro system that learns user productivity patterns
+- Create AI-driven productivity insights using GPT-4 and LangChain
+- Implement team synchronization for coordinated deep work sessions
+- Build comprehensive analytics dashboard with focus metrics
+- Create gamified achievement system for consistent deep work habits
+</main_goals>
+
+<architecture_overview>
+### Architecture Overview
+
+- **Type:** Microservices with event-driven architecture
+- **Frontend:** Next.js 14.2 App Router with Server Components
+- **Backend:** NestJS 10.3 API gateway, FastAPI 0.110+ analytics service
+- **Real-time:** Socket.io 4.7 for team sync and timer updates
+</architecture_overview>
+
+<technology_stack>
+## Technology Stack
+
+* **Primary Programming Languages:**
+  * TypeScript 5.3+ (strict mode)
+  * Python 3.12+ (analytics backend)
+
+* **Frameworks/Libraries:**
+  * Frontend: React 18.3, Next.js 14.2, TailwindCSS 3.4, Radix UI
+  * Backend: NestJS 10.3, FastAPI 0.110+
+  * State: Zustand 4.5, React Query 5.0
+  * Testing: Vitest 1.4, Playwright 1.42, pytest 8.1
+
+* **Databases:**
+  * PostgreSQL 16 with Prisma ORM (main data)
+  * MongoDB 7.0 (time-series analytics)
+  * Redis 7.2+ (sessions, cache, real-time state)
+
+* **Explicitly DO NOT use:**
+  * Redux (use Zustand instead)
+  * Axios (use native fetch)
+  * Moment.js (use date-fns)
+  * CSS-in-JS (use TailwindCSS)
+  * GraphQL (REST + WebSocket)
+</technology_stack>
+
+<project_structure>
+## Project Structure
+
+* **Directory Structure:**
+```
+focusflow/
+├── apps/
+│   ├── web/               # Next.js frontend
+│   │   ├── app/           # App router pages
+│   │   ├── components/    # Shared React components
+│   │   ├── lib/           # Utilities, hooks, schemas
+│   │   └── styles/        # Global styles, tokens
+│   └── mobile/            # React Native (future)
+├── services/
+│   ├── api/               # NestJS API gateway
+│   │   ├── src/modules/   # Feature modules
+│   │   ├── src/services/  # Business logic
+│   │   └── prisma/        # Database schema
+│   ├── analytics/         # Python FastAPI analytics
+│   │   ├── app/           # Models, services, routers
+│   │   └── tests/         # pytest tests
+│   └── realtime/          # Socket.io server
+├── packages/
+│   ├── shared-types/      # Shared TypeScript types
+│   ├── ui-components/     # Shared React components
+│   └── config/            # Shared configs
+└── infrastructure/        # Docker, K8s, Terraform
+```
+</project_structure>
+
+<coding_style>
+## Coding Style and Conventions
+
+* **TypeScript/React:**
+  * Strict mode with exactOptionalPropertyTypes
+  * Explicit return types on all functions
+  * Prefer `type` over `interface`
+  * Server Components by default; `'use client'` only when needed
+  * No default exports (except Next.js pages/layouts)
+
+* **Python:**
+  * Type hints required for all functions
+  * Pydantic for data validation
+  * async/await for all I/O
+  * PEP 8 + Black (line length 88)
+
+* **Naming Conventions:**
+  * Files: kebab-case.tsx, snake_case.py
+  * Components: PascalCase
+  * Functions: camelCase with verb prefixes
+  * Constants: UPPER_SNAKE_CASE
+
+* **Formatting:**
+  * 2 spaces (TS), 4 spaces (Python)
+  * 100 chars (TS), 88 chars (Python)
+  * Single quotes (TS), double quotes (Python)
+</coding_style>
+
+<workflow>
+## Workflow
+
+* **Commands:**
+```bash
+pnpm install        # Install
+pnpm dev            # All services
+pnpm test           # Tests
+pnpm build          # Build
+```
+
+* **Commits:** `type(scope): description`
+  * Types: feat, fix, docs, style, refactor, perf, test, chore
+
+* **Branches:**
+  * Feature: `feature/FOCUS-123-description`
+  * Bugfix: `fix/FOCUS-456-description`
+
+* **Before PR:** `pnpm lint && pnpm typecheck && pnpm test`
+</workflow>
+
+<ai_interaction>
+## AI Interaction
+
+* **Key Files:**
+  * `apps/web/middleware.ts` — Auth and route protection
+  * `services/api/prisma/schema.prisma` — Database schema
+  * `apps/web/lib/schemas/` — Zod validation schemas
+  * `apps/web/styles/tokens.ts` — Design tokens
+
+* **Good Examples:**
+  * `apps/web/app/dashboard/components/TimerCard.tsx` — Server component
+  * `apps/web/lib/hooks/use-timer.ts` — Custom hook
+  * `services/api/src/services/ai/insights-generator.ts` — Service layer
+
+* **When Uncertain:**
+  * Ask clarifying questions before implementing
+  * Propose plan for complex changes
+  * Reference existing patterns
+  * Tag rule applications: [SF], [RP], [DM]
+</ai_interaction>

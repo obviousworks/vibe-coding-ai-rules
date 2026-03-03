@@ -1,0 +1,130 @@
+<project_description>
+### Project Description
+
+**"{{PROJECT_NAME}}"** - {{PROJECT_DESCRIPTION}}
+</project_description>
+
+<main_goals>
+### Main Goals
+
+- {{GOAL_1}}
+- {{GOAL_2}}
+- {{GOAL_3}}
+</main_goals>
+
+<architecture_overview>
+### Architecture Overview
+
+- **Type:** {{ARCHITECTURE_TYPE}}
+- **Backend:** {{BACKEND_ARCHITECTURE}}
+</architecture_overview>
+
+<technology_stack>
+## Technology Stack
+
+* **Primary Programming Languages:**
+  * {{PRIMARY_LANGUAGE}} ({{LANGUAGE_VERSION}})
+  * {{SECONDARY_LANGUAGE}} ({{LANGUAGE_VERSION}}) (if applicable)
+
+* **Frameworks/Libraries:**
+  * Frontend: {{FRONTEND_FRAMEWORKS}}
+  * Backend: {{BACKEND_FRAMEWORKS}}
+  * State Management: {{STATE_MANAGEMENT}}
+  * Testing: {{TESTING_FRAMEWORKS}}
+
+* **Databases:**
+  * {{PRIMARY_DB}} ({{DB_PURPOSE}})
+  * {{SECONDARY_DB}} ({{DB_PURPOSE}}) (if applicable)
+  * {{CACHE_DB}} (caching) (if applicable)
+
+* **Additional Tools/Technologies:**
+  * {{TOOL_1}}
+  * {{TOOL_2}}
+  * {{TOOL_3}}
+
+* **Explicitly DO NOT use:**
+  * {{BANNED_DEPENDENCY_1}} (use {{ALTERNATIVE_1}} instead)
+  * {{BANNED_DEPENDENCY_2}} (use {{ALTERNATIVE_2}} instead)
+</technology_stack>
+
+<project_structure>
+## Project Structure
+
+* **Directory Structure:**
+```
+{{PROJECT_STRUCTURE_TREE}}
+```
+
+* **Reusable Components/Modules:**
+  * {{SHARED_MODULE_1}} - {{MODULE_DESCRIPTION}}
+  * {{SHARED_MODULE_2}} - {{MODULE_DESCRIPTION}}
+</project_structure>
+
+<coding_style>
+## Coding Style and Conventions
+
+* **Language-Specific Style Guides:**
+  * {{LANGUAGE}}: {{STYLE_GUIDE}}
+
+* **Naming Conventions:**
+  * PascalCase for components, interfaces, types, and classes
+  * camelCase for variables, functions, and instances
+  * UPPER_SNAKE_CASE for constants
+  * {{ADDITIONAL_NAMING_RULES}}
+
+* **Specific Formatting Rules:**
+  * Indentation: {{INDENTATION}}
+  * Maximum line length: {{LINE_LENGTH}} characters
+  * Quotes: {{QUOTE_STYLE}}
+  * Trailing commas: required in multiline structures
+  * Semicolons: {{SEMICOLONS}}
+
+* **Comment Guidelines:**
+  * Use JSDoc/TSDoc for public API functions
+  * Inline comments only for non-obvious solutions
+  * Never commit .env files — use .env.example with dummy values
+</coding_style>
+
+<workflow>
+## Workflow
+
+* **Testing Strategy:**
+  * Unit tests for utilities and pure functions (>{{COVERAGE_TARGET}}% coverage)
+  * Integration tests for API endpoints and services
+  * E2E tests for critical user flows
+
+* **Deployment Process:**
+  * {{DEPLOYMENT_STRATEGY}}
+
+* **Branching Strategy:**
+  * Feature branches: `feature/feature-name`
+  * Bugfix branches: `fix/issue-description`
+  * Release branches: `release/v1.2.3`
+</workflow>
+
+<ai_interaction>
+## AI Interaction
+
+* **Focus in Requests:**
+  * Limit scope to specific files or functions
+  * Provide clear acceptance criteria
+  * Use custom tags for structured requests
+
+* **Handling Existing Code:**
+  * Preserve formatting and style of surrounding code
+  * Leave existing comments intact unless specifically editing them
+  * Match abstraction level of current implementation
+
+* **Feedback on Rules:**
+  * Tag rule applications with abbreviations: [SF], [DRY], etc.
+  * Explain reasoning when choosing between conflicting rules
+</ai_interaction>
+
+<additional_notes>
+## Additional Notes
+
+* **Important Patterns/Architectural Principles:**
+  * {{PATTERN_1}}
+  * {{PATTERN_2}}
+  * {{PATTERN_3}}
+</additional_notes>
