@@ -1,6 +1,6 @@
 # Vibe Coding AI Rules
 
-**The Ultimate AI Coding Ruleset for Windsurf, Cursor, GitHub Copilot, Claude Code, Cline, Codex & more**
+**The Ultimate AI Coding Ruleset for Windsurf, Cursor, GitHub Copilot, Claude Code, Cline, Codex, Zed AI, Gemini CLI & more**
 
 > "Context is King. AI agents are only as good as the rules you give them."
 
@@ -21,6 +21,10 @@ Production-ready rules, templates, and best practices for AI-assisted developmen
 | **Claude Code** | `ide-specific/claude-code/` | `CLAUDE.md` + `.claude/rules/` | [Setup](ide-specific/claude-code/README.md) |
 | **Cline** | `ide-specific/cline/` | `.clinerules` or `.clinerules/` | [Setup](ide-specific/cline/README.md) |
 | **Codex** | `ide-specific/codex/` | `AGENTS.md` | [Setup](ide-specific/codex/README.md) |
+| **Zed AI** | `ide-specific/zed/` | `.rules` | [Setup](ide-specific/zed/README.md) |
+| **Gemini CLI** | `ide-specific/gemini-cli/` | `GEMINI.md` | [Setup](ide-specific/gemini-cli/README.md) |
+| **Aider** | `ide-specific/aider/` | `conventions.md` + `.aider.conf.yml` | [Setup](ide-specific/aider/README.md) |
+| **Continue.dev** | `ide-specific/continue/` | `.continue/rules/*.md` | [Setup](ide-specific/continue/README.md) |
 | **Universal** | `AGENTS.md` | Works everywhere | [Setup](templates/AGENTS.md) |
 
 **Fastest approach**: Copy `AGENTS.md` to your project root and run `./scripts/symlink-setup.sh` to create symlinks for all IDEs at once.
@@ -35,11 +39,11 @@ Production-ready rules, templates, and best practices for AI-assisted developmen
 cp templates/agent-template.md AGENTS.md
 # Customize for your project, then:
 ./scripts/symlink-setup.sh
-# Creates: .windsurfrules, .cursorrules, CLAUDE.md, .clinerules, .github/copilot-instructions.md
-# Codex reads AGENTS.md natively — no symlink needed
+# Creates: .windsurfrules, .cursorrules, CLAUDE.md, .clinerules, GEMINI.md, .github/copilot-instructions.md
+# Codex, Zed AI read AGENTS.md natively — no symlink needed
 ```
 
-IDEs that read AGENTS.md natively: Cursor, GitHub Copilot, Cline, Codex, Aider.
+IDEs that read AGENTS.md natively: Cursor, GitHub Copilot, Cline, Codex, Zed AI, Gemini CLI, Aider.
 
 ## What's Inside
 
@@ -55,9 +59,12 @@ vibe-coding-ai-rules/
 │   ├── security-rules.md             # Security patterns for AI-generated code
 │   ├── performance-rules.md          # Performance optimization patterns
 │   ├── testing-rules.md              # Testing standards and patterns
+│   ├── error-handling.md             # Error handling patterns and standards
+│   ├── logging-rules.md             # Logging standards and best practices
+│   ├── api-design.md                # API design conventions (REST, RFC 7807)
 │   ├── migration-guide.md            # Migrate between IDE configurations
 │   ├── vibe-coding-overview.md       # Quick reference cheat sheet
-│   └── ide-comparison.md             # Feature comparison of all 6 IDEs
+│   └── ide-comparison.md             # Feature comparison of all 10 IDEs
 │
 ├── templates/                         # Universal templates (tool-agnostic)
 │   ├── AGENTS.md                     # Universal template
@@ -70,7 +77,11 @@ vibe-coding-ai-rules/
 │   ├── github-copilot/               # Copilot instructions + examples
 │   ├── claude-code/                  # CLAUDE.md + .claude/rules/ + examples
 │   ├── cline/                        # .clinerules single + multi-file + examples
-│   └── codex/                        # AGENTS.md + examples
+│   ├── codex/                        # AGENTS.md + examples
+│   ├── zed/                          # .rules + examples
+│   ├── gemini-cli/                   # GEMINI.md + examples
+│   ├── aider/                        # conventions.md + .aider.conf.yml
+│   └── continue/                     # .continue/rules/*.md
 │
 ├── prompts/                           # AI prompts for customization
 │   ├── adapt-rules-prompt.txt        # Generate rules for ANY IDE from project info
@@ -90,21 +101,21 @@ vibe-coding-ai-rules/
 | [Testing Rules](docs/testing-rules.md) | Test pyramid, patterns, mocking, coverage requirements |
 | [IDE Comparison](docs/ide-comparison.md) | Feature matrix, cross-IDE compatibility, recommendations |
 | [Migration Guide](docs/migration-guide.md) | Step-by-step migration between any two IDEs |
+| [Error Handling](docs/error-handling.md) | Error types, propagation, retry patterns, error boundaries |
+| [Logging Rules](docs/logging-rules.md) | Log levels, structured logging, correlation IDs, PII protection |
+| [API Design](docs/api-design.md) | REST conventions, pagination, error responses (RFC 7807), rate limiting |
 | [Vibe Coding Overview](docs/vibe-coding-overview.md) | One-page cheat sheet of core principles |
 
 ## Core Principles
 
 These principles are embedded in all IDE-specific rule files:
 
-| Principle | Abbr. | Description |
-|-----------|-------|-------------|
-| Problem Clarity First | PCF | Clarify intent before generating code. No code without clear requirements. |
-| Simplicity First | SF | Choose the simplest viable solution. Complex patterns need justification. |
-| Readability Priority | RP | Code must be immediately understandable by humans and AI. |
-| Dependency Minimalism | DM | No new libraries without explicit request or compelling justification. |
-| Security First | SecF | Validate all inputs, no secrets in code, defense in depth. |
-| Test-Driven Thinking | TDT | Design all code to be testable from inception. |
-| Token Efficiency | TE | Use file-scoped commands, reference docs, optimize context usage. |
+| Principle | Description |
+|-----------|-------------|
+| Clarify Before Coding | Understand requirements before writing code. Ask questions when intent is unclear. No code without clear goals. |
+| Simplicity First | Choose the simplest viable solution. Complex patterns need explicit justification. Readable code over clever code. |
+| Security By Default | Validate all inputs. No secrets in code. Defense in depth. Least privilege principle. |
+| Test-Driven Thinking | Design all code to be testable from inception. Write tests alongside code. Verify before committing. |
 
 ## Customization
 
@@ -130,10 +141,14 @@ Two ways to generate rules for your project:
 | Claude Code | `CLAUDE.md` + `.claude/rules/` | Manual | Yes | No (dir-based) |
 | Cline | `.clinerules` or `.clinerules/` | Native | Yes | Yes (YAML) |
 | Codex | `AGENTS.md` | Native | Yes (dir-based) | No |
+| Zed AI | `.rules` | Native | No | No |
+| Gemini CLI | `GEMINI.md` | Native | Yes (dir-based) | No |
+| Aider | `conventions.md` | Native | No | No |
+| Continue.dev | `.continue/rules/*.md` | No | Yes | Yes (YAML globs) |
 
 ## Coming from the old Windsurf Global Rules?
 
-If you've been using our original `global_rules.md` and `.windsurfrules` — they're still here, now as part of a much bigger toolkit. You'll find the original Windsurf rules as a ready-to-use example in [`ide-specific/windsurf/examples/`](ide-specific/windsurf/examples/), alongside new templates that work across all 6 IDEs.
+If you've been using our original `global_rules.md` and `.windsurfrules` — they're still here, now as part of a much bigger toolkit. You'll find the original Windsurf rules as a ready-to-use example in [`ide-specific/windsurf/examples/`](ide-specific/windsurf/examples/), alongside new templates that work across all 10 IDEs.
 
 For the thinking behind this approach, check out these articles:
 
@@ -168,10 +183,13 @@ We welcome contributions! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 This repo is maintained by [Obviousworks](https://www.obviousworks.ch) — we help dev teams ship better software with AI.
 
-Everything in this repository reflects what we teach and implement with real teams: effective agent harness structures, production-grade rule systems, and development processes designed around AI from the ground up. In our [AI Developer Bootcamp](https://www.obviousworks.ch/schulungen/ai-developer-bootcamp/) we work hands-on with teams to build exactly this — from writing quality AI coding rules to setting up a complete agentic development workflow that actually scales.
+Everything in this repository reflects what we teach and implement with real teams: effective agent harness structures, production-grade rule systems, and development processes designed around AI from the ground up.
+
+In our [**AI Developer Bootcamp**](https://www.obviousworks.ch/schulungen/ai-developer-bootcamp/) we work hands-on with teams to build exactly this — from writing quality AI coding rules to setting up a complete agentic development workflow that actually scales. And in the [**Agentic Coding Hackathon**](https://www.obviousworks.ch/schulungen/agentic-coding-hackathon/) you get to put it all into practice: build real projects with AI agents in one intensive day, guided by our engineering team.
 
 If your team writes code with AI and wants to do it properly:
 
-- [AI Developer Bootcamp — hands-on training for dev teams](https://www.obviousworks.ch/schulungen/ai-developer-bootcamp/)
+- [**AI Developer Bootcamp** — hands-on training for dev teams](https://www.obviousworks.ch/schulungen/ai-developer-bootcamp/)
+- [**Agentic Coding Hackathon** — build real projects with AI agents in one day](https://www.obviousworks.ch/schulungen/agentic-coding-hackathon/)
 - [Agent Harness: Why 90% of AI agents fail (and how to fix it)](https://www.obviousworks.ch/agent-harness-warum-90-der-ki-agenten-scheitern-und-wie-du-es-besser-machst/)
 - [obviousworks.ch](https://www.obviousworks.ch)

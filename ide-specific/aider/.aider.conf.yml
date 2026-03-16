@@ -1,0 +1,47 @@
+##########################################################
+# Aider Configuration File
+# Place in project root as .aider.conf.yml
+# or globally as ~/.aider.conf.yml
+# Uncomment and customize settings as needed.
+##########################################################
+
+## Model Selection
+# model: anthropic/claude-sonnet-4-20250514
+# editor-model: anthropic/claude-sonnet-4-20250514
+
+## Auto-Commit
+# auto-commits: true
+# dirty-commits: false
+# commit-prompt: "Generate a conventional commit message: type(scope): description"
+
+## Linting
+# lint-cmd: npm run lint
+# auto-lint: true
+
+## Testing
+# test-cmd: npm test
+# auto-test: false
+
+## Context
+# read:
+#   - AGENTS.md
+#   - docs/architecture.md
+
+## Git
+# gitignore: true
+# attribute-author: true
+# attribute-committer: false
+
+## Output
+# dark-mode: true
+# pretty: true
+# stream: true
+
+## Browser / GUI
+# no-browser: false
+# gui: false
+
+## Advanced
+# map-tokens: 1024
+# cache-prompts: true
+# edit-format: diff

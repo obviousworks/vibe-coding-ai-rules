@@ -4,17 +4,17 @@ A detailed comparison of how the top AI coding IDEs handle rule configuration, c
 
 ## Feature Matrix
 
-| Feature | Cursor | Windsurf | GitHub Copilot | Claude Code | Cline | Codex |
-|---------|--------|----------|----------------|-------------|-------|-------|
-| **Config file** | `.cursor/rules/*.mdc` | `.windsurfrules` | `.github/copilot-instructions.md` | `CLAUDE.md` | `.clinerules` | `AGENTS.md` |
-| **Multi-file support** | ✅ (.mdc per rule) | ❌ (single file) | ✅ (.instructions.md) | ✅ (.claude/rules/) | ✅ (.clinerules/) | ✅ (dir-based) |
-| **Glob/path filtering** | ✅ (globs in YAML) | ❌ | ✅ (applyTo) | ❌ (directory-based) | ✅ (YAML frontmatter) | ❌ |
-| **Global rules** | ✅ (User Rules) | ✅ (global_rules.md) | ✅ (VS Code settings) | ✅ (~/.claude/CLAUDE.md) | ✅ (VS Code settings) | ✅ (~/.codex/AGENTS.md) |
-| **AGENTS.md support** | ✅ native | ❌ (manual) | ✅ (detected) | ❌ (manual) | ✅ (reads it) | ✅ native |
-| **Hierarchy levels** | User > Project > Rule | Global > Project | Repo > Directory | User > Project > Dir | Global > Workspace | Global > Project > Dir |
-| **Format** | YAML frontmatter + MD | Plain Markdown | YAML frontmatter + MD | Plain Markdown | Plain MD / YAML+MD | Plain Markdown |
-| **Max recommended size** | ~500 tokens per .mdc | ~6000 chars global | No hard limit | No hard limit | No hard limit | 32 KiB default |
-| **Legacy file** | `.cursorrules` | - | - | - | - | - |
+| Feature | Cursor | Windsurf | GitHub Copilot | Claude Code | Cline | Codex | Zed AI | Gemini CLI | Aider | Continue.dev |
+|---------|--------|----------|----------------|-------------|-------|-------|--------|------------|-------|--------------|
+| **Config file** | `.cursor/rules/*.mdc` | `.windsurfrules` | `.github/copilot-instructions.md` | `CLAUDE.md` | `.clinerules` | `AGENTS.md` | `.rules` | `GEMINI.md` | `conventions.md` | `.continue/rules/*.md` |
+| **Multi-file support** | ✅ (.mdc per rule) | ❌ (single file) | ✅ (.instructions.md) | ✅ (.claude/rules/) | ✅ (.clinerules/) | ✅ (dir-based) | ❌ (single file) | ✅ (dir-based) | ❌ (single file) | ✅ (rules per topic) |
+| **Glob/path filtering** | ✅ (globs in YAML) | ❌ | ✅ (applyTo) | ❌ (directory-based) | ✅ (YAML frontmatter) | ❌ | ❌ | ❌ | ❌ | ✅ (YAML globs) |
+| **Global rules** | ✅ (User Rules) | ✅ (global_rules.md) | ✅ (VS Code settings) | ✅ (~/.claude/CLAUDE.md) | ✅ (VS Code settings) | ✅ (~/.codex/AGENTS.md) | ❌ | ❌ | ✅ (~/.aider.conf.yml) | ✅ (~/.continue/) |
+| **AGENTS.md support** | ✅ native | ❌ (manual) | ✅ (detected) | ❌ (manual) | ✅ (reads it) | ✅ native | ✅ native | ✅ native | ✅ native | ❌ |
+| **Hierarchy levels** | User > Project > Rule | Global > Project | Repo > Directory | User > Project > Dir | Global > Workspace | Global > Project > Dir | Project only | Project > Dir | Global > Project | Global > Project > Rule |
+| **Format** | YAML frontmatter + MD | Plain Markdown | YAML frontmatter + MD | Plain Markdown | Plain MD / YAML+MD | Plain Markdown | Plain Markdown | Plain Markdown | Plain Markdown | YAML frontmatter + MD |
+| **Max recommended size** | ~500 tokens per .mdc | ~6000 chars global | No hard limit | No hard limit | No hard limit | 32 KiB default | No hard limit | No hard limit | No hard limit | No hard limit |
+| **Legacy file** | `.cursorrules` | - | - | - | - | - | - | - | - | - |
 
 ## How Each IDE Loads Rules
 
@@ -72,22 +72,66 @@ A detailed comparison of how the top AI coding IDEs handle rule configuration, c
 
 **Loading order**: Global AGENTS.md → Project root AGENTS.md → Subdirectory AGENTS.md (concatenated)
 
+### Zed AI
+1. **Project Rules**: Scans project root for rule files in priority order
+   - `.rules` → `.cursorrules` → `.windsurfrules` → `.clinerules` → `.github/copilot-instructions.md` → `AGENTS.md` → `CLAUDE.md` → `GEMINI.md`
+2. First match wins — only one file is loaded
+
+**Loading order**: First file found in priority scan order
+
+**Key behavior**: Zed is the most format-compatible editor, recognizing 8+ rule file formats natively. No proprietary config format needed.
+
+### Google Gemini CLI
+1. **Project root**: `./GEMINI.md` (primary configuration)
+2. **Directory-specific**: `./subfolder/GEMINI.md` (scoped instructions)
+3. **Fallback**: `AGENTS.md` (also supported)
+
+**Loading order**: Project GEMINI.md → Subdirectory GEMINI.md (hierarchical)
+
+**Key behavior**: Similar to Claude Code's CLAUDE.md model — hierarchical plain Markdown files scoped by directory.
+
+### Aider
+1. **Global config**: `~/.aider.conf.yml` (model, auto-commit, lint/test commands)
+2. **Project conventions**: `.aider/conventions.md` or `conventions.md` in project root
+3. **AGENTS.md**: Read natively from project root
+4. **Ad-hoc context**: `--read` flag to pass any file as read-only context
+
+**Loading order**: Global config → Project conventions → AGENTS.md → --read files
+
+**Key behavior**: CLI-based pair programming tool. Supports multiple LLM backends. Auto-commits changes by default.
+
+### Continue.dev
+1. **Global config**: `~/.continue/` directory with model configuration
+2. **Project rules**: `.continue/rules/*.md` with YAML frontmatter
+   - `alwaysApply: true` → Always included in context
+   - `globs: ["*.tsx"]` → Auto-activated for matching files
+   - `regex: "TODO|FIXME"` → Activated by content patterns
+3. **Model config**: `.continuerc.json` in project root
+
+**Loading order**: Global config → Project rules (filtered by type/glob/regex)
+
+**Key behavior**: Open-source IDE extension for VS Code and JetBrains. Rule format similar to Cursor's .mdc files with YAML frontmatter.
+
 ## Cross-IDE Compatibility
 
 Which IDE reads which file natively?
 
-| File | Cursor | Windsurf | Copilot | Claude Code | Cline | Codex |
-|------|--------|----------|---------|-------------|-------|-------|
-| `AGENTS.md` | ✅ | ❌ | ✅ | ❌ | ✅ | ✅ |
-| `.cursorrules` | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ |
-| `.windsurfrules` | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ |
-| `CLAUDE.md` | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
-| `.clinerules` | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
-| `.github/copilot-instructions.md` | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
-| `.cursor/rules/*.mdc` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
-| `.claude/rules/*.md` | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| File | Cursor | Windsurf | Copilot | Claude Code | Cline | Codex | Zed AI | Gemini CLI | Aider | Continue |
+|------|--------|----------|---------|-------------|-------|-------|--------|------------|-------|----------|
+| `AGENTS.md` | ✅ | ❌ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ |
+| `.cursorrules` | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| `.windsurfrules` | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| `CLAUDE.md` | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| `GEMINI.md` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ | ❌ |
+| `.clinerules` | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| `.rules` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| `.github/copilot-instructions.md` | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| `.cursor/rules/*.mdc` | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| `.claude/rules/*.md` | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| `.continue/rules/*.md` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ |
+| `conventions.md` | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
 
-**Key insight**: Cline is the most compatible, reading multiple formats natively. Using AGENTS.md gives you the broadest native support (Cursor, Copilot, Cline, Codex).
+**Key insight**: Zed AI is the most format-compatible editor, reading 8+ rule file formats natively. Using AGENTS.md gives you the broadest native support (Cursor, Copilot, Cline, Codex, Zed AI, Gemini CLI, Aider).
 
 ## Recommendations
 

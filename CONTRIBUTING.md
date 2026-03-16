@@ -21,6 +21,10 @@ Thank you for your interest in contributing! This project aims to be the definit
 - `ide-specific/claude-code/CLAUDE.md` + `.claude/rules/*.md`
 - `ide-specific/cline/.clinerules/`
 - `ide-specific/codex/AGENTS.md`
+- `ide-specific/zed/.rules`
+- `ide-specific/gemini-cli/GEMINI.md`
+- `ide-specific/aider/conventions.md`
+- `ide-specific/continue/.continue/rules/*.md`
 
 Only the **format** differs per IDE — the **content and rules** should be equivalent.
 
@@ -64,7 +68,7 @@ Use conventional commit format:
 type(scope): description
 
 Types: feat, fix, docs, style, refactor, test, chore
-Scopes: cursor, windsurf, copilot, claude-code, cline, codex, docs, templates
+Scopes: cursor, windsurf, copilot, claude-code, cline, codex, zed, gemini-cli, aider, continue, docs, templates
 ```
 
 Examples:
@@ -85,6 +89,10 @@ Examples:
 - [ ] Claude Code (CLAUDE.md / .claude/rules/)
 - [ ] Cline (.clinerules/)
 - [ ] Codex (AGENTS.md)
+- [ ] Zed AI (.rules)
+- [ ] Gemini CLI (GEMINI.md)
+- [ ] Aider (conventions.md)
+- [ ] Continue.dev (.continue/rules/)
 - [ ] Templates (AGENTS.md, agent-template.md)
 
 ## Testing

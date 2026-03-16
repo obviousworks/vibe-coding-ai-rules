@@ -1,6 +1,5 @@
 ---
-description: Core coding principles applied to all files and conversations
-globs:
+name: Core Principles
 alwaysApply: true
 ---
 
@@ -17,3 +16,8 @@ Validate all inputs. No secrets in code. Defense in depth. Least privilege princ
 
 ## Test-Driven Thinking
 Design all code to be testable from inception. Write tests alongside code. Verify before committing.
+
+## Additional Standards
+- Follow established conventions for the relevant language and tech stack
+- Comment only complex logic or non-obvious decisions — avoid documenting the obvious
+- After generating code, review for redundancy, unnecessary complexity, or simpler alternatives

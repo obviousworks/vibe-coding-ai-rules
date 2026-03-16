@@ -15,8 +15,8 @@ Windsurf uses a two-tier rule system:
 
 ### Project Rules
 1. Copy `.windsurfrules` to your project root
-2. Customize the placeholders (marked with `{{...}}`)
-3. Or use our [AI adaptation prompt](../../prompts/adapt-rules-prompt.txt) to generate rules automatically
+2. The file is ready to use as-is with sensible defaults
+3. Customize sections as needed for your project (tech stack, naming conventions, etc.)
 
 ## File Format
 
@@ -24,6 +24,7 @@ Windsurf uses a two-tier rule system:
 - Global rules: max ~6000 characters recommended
 - Project rules: no hard limit, but keep concise for token efficiency
 - Windsurf does NOT support multi-file rules or glob patterns
+- XML-style tags (`<section>...</section>`) can help Windsurf parse sections
 
 ## Hierarchy
 
@@ -32,16 +33,21 @@ Global Rules (AI Settings)     ← Applied to ALL projects
   └── .windsurfrules           ← Project-specific, overrides global
 ```
 
+## Files
+
+| File | Description |
+|------|-------------|
+| `.windsurfrules` | Ready-to-use project ruleset with core principles, code style, security, testing, and workflow rules |
+| `examples/global_rules.md` | Complete global rules example (FocusFlow project) |
+| `examples/.windsurfrules-template` | Template version with `{{VARIABLE}}` placeholders for customization |
+
 ## Tips
 
 - Keep global rules focused on universal principles (security, code style, workflow)
 - Put project-specific details (tech stack, commands, structure) in `.windsurfrules`
 - Use XML-style tags (`<section>...</section>`) to help Windsurf parse sections
 - Windsurf also reads AGENTS.md if present, but not natively — use symlink for best results
-
-## Examples
-
-See `examples/` for a complete FocusFlow project configuration (`.windsurfrules` + `global_rules.md`).
+- The template in `examples/.windsurfrules-template` can be used with the [AI adaptation prompt](../../prompts/adapt-rules-prompt.txt) for fully customized rules
 
 ## Cross-IDE Compatibility
 

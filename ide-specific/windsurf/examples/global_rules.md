@@ -4,14 +4,10 @@ These rules establish universal standards and preferences that apply across all 
 
 ## Core Principles
 
-* **Problem Clarity First (PCF):** Always clarify the intent and problem before generating code. If requirements are unclear or ambiguous, request clarification instead of guessing. No code without a clear problem statement.
-* **Simplicity First (SF):** Always choose the simplest viable solution. Complex patterns or architectures require explicit justification. Ensure syntactic correctness and basic functionality before introducing abstractions or patterns.
-* **Readability Priority (RP):** Code must be immediately understandable by both humans and AI during future modifications.
-* **Dependency Minimalism (DM):** No new libraries or frameworks without explicit request or compelling justification.
-* **Industry Standards Adherence (ISA):** Follow established conventions for the relevant language and tech stack.
-* **Strategic Documentation (SD):** Comment only complex logic or critical functions. Avoid documenting the obvious.
-Write new docs in english. If you find docs in other languages, rewrite them into english.
-* **Test-Driven Thinking (TDT):** Design all code to be easily testable from inception.
+1. **Clarify Before Coding:** Understand requirements before writing code. Ask questions when intent is unclear. No code without clear goals.
+2. **Simplicity First:** Choose the simplest viable solution. Complex patterns need explicit justification. Readable code over clever code.
+3. **Security By Default:** Validate all inputs. No secrets in code. Defense in depth. Least privilege principle.
+4. **Test-Driven Thinking:** Design all code to be testable from inception. Write tests alongside code. Verify before committing.
 
 ## Workflow Standards
 
@@ -28,7 +24,12 @@ Write new docs in english. If you find docs in other languages, rewrite them int
 * **Transparent Reasoning (TR):** When generating code, explicitly reference which global rules influenced decisions.
 * **Context Window Management (CWM):** Be mindful of AI context limitations. Suggest new sessions when necessary.
 * **Preserve Existing Code (PEC):** Windsurf must not overwrite or break functional code unless explicitly instructed otherwise. Propose changes conservatively to maintain codebase integrity [AC, CA]
-* **Self-Review Before Commit (SRC):** After generating code, actively argue against your own solution. Check for redundancy, unnecessary complexity, or simpler alternatives before presenting. Prefer refactoring over adding code when fixing errors [SF, DRY].
+* **Self-Review Before Commit:** After generating code, actively argue against your own solution. Check for redundancy, unnecessary complexity, or simpler alternatives before presenting. Prefer refactoring over adding code when fixing errors.
+* **Dependency Governance:** Never add new dependencies without explicit approval or compelling justification.
+* **Token Efficiency:** Use file-scoped commands. Reference docs instead of pasting. Optimize context window usage.
+* **Industry Standards:** Follow established conventions for the relevant language and tech stack.
+* **Strategic Documentation:** Comment only complex logic or critical functions. Avoid documenting the obvious.
+* **Readability:** Code must be immediately understandable. Use descriptive naming. Maintain clear structure. Readable code over clever code.
 
 ## Code Quality Guarantees
 

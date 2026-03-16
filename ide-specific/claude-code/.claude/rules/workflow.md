@@ -16,7 +16,6 @@
 - Never hardcode environment-specific values
 
 ## Communication
-- Tag rule applications: [SF], [RP], [DM]
 - Ask before architectural changes
 - Flag security concerns immediately
 - Propose alternatives with pros/cons when uncertain
@@ -25,3 +24,18 @@
 - Use file-scoped commands for individual changes
 - Only run project-wide commands when requested
 - Keep files focused and modular
+
+## Dependency Governance
+- Never add new dependencies without explicit approval or compelling justification
+
+## Token Efficiency
+- Use file-scoped commands. Reference docs instead of pasting. Optimize context window usage.
+
+## Industry Standards
+- Follow established conventions for the relevant language and tech stack
+
+## Strategic Documentation
+- Comment only complex logic or critical functions. Avoid documenting the obvious.
+
+## Self-Review Before Commit
+- After generating code, argue against your own solution. Check for redundancy, unnecessary complexity, or simpler alternatives.

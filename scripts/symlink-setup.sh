@@ -38,6 +38,10 @@ echo "  ✓ CLAUDE.md → AGENTS.md"
 ln -sf AGENTS.md .clinerules
 echo "  ✓ .clinerules → AGENTS.md"
 
+# Gemini CLI
+ln -sf AGENTS.md GEMINI.md
+echo "  ✓ GEMINI.md → AGENTS.md"
+
 # GitHub Copilot (needs .github/ directory)
 mkdir -p .github
 ln -sf ../AGENTS.md .github/copilot-instructions.md
@@ -53,6 +57,10 @@ echo "  • Windsurf    → reads .windsurfrules"
 echo "  • Claude Code → reads CLAUDE.md"
 echo "  • Cline       → reads .clinerules + AGENTS.md"
 echo "  • Codex       → reads AGENTS.md natively (no symlink needed)"
+echo "  • Zed AI      → reads AGENTS.md natively (no symlink needed)"
+echo "  • Gemini CLI  → reads GEMINI.md + AGENTS.md"
+echo "  • Aider       → reads AGENTS.md natively (no symlink needed)"
+echo "  • Continue    → uses .continue/rules/ (copy rules manually)"
 echo "  • GitHub Copilot → reads .github/copilot-instructions.md + AGENTS.md"
 echo ""
 echo "Tip: Add these symlinks to your .gitignore if you prefer"

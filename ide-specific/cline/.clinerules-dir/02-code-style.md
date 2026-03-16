@@ -15,6 +15,9 @@
 - Semicolons: {{SEMICOLONS}} (e.g., required)
 - Trailing Commas: always in multi-line structures
 
+## Readability
+Code must be immediately understandable. Use descriptive naming. Maintain clear structure. Readable code over clever code.
+
 ## Do's
 - Use explicit return types for functions
 - Prefer composition over inheritance

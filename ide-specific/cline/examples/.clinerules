@@ -17,10 +17,10 @@ FocusFlow is an advanced productivity SaaS platform combining Pomodoro technique
 Redux, Axios, Moment.js, CSS-in-JS, GraphQL
 
 ## Core Principles
-1. **Problem Clarity First**: Clarify intent before generating code
-2. **Simplest Fit**: Choose simplest viable solution — justify complexity
-3. **Repair Protocol**: Understand root cause → fix → verify → add test
-4. **Security First**: Validate all input, no secrets in code, parameterized queries only
+1. **Clarify Before Coding**: Understand requirements before writing code. Ask questions when intent is unclear. No code without clear goals.
+2. **Simplicity First**: Choose the simplest viable solution. Complex patterns need explicit justification. Readable code over clever code.
+3. **Security By Default**: Validate all inputs. No secrets in code. Defense in depth. Least privilege principle.
+4. **Test-Driven Thinking**: Design all code to be testable from inception. Write tests alongside code. Verify before committing.
 
 ## Code Style
 - Files: `kebab-case.tsx`, `snake_case.py`

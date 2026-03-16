@@ -19,23 +19,17 @@
 
 ## Core Principles
 
-### Problem Clarity First (PCF)
-Always clarify intent before generating code. No code without clear requirements.
+### Clarify Before Coding
+Understand requirements before writing code. Ask questions when intent is unclear. No code without clear goals.
 
-### Simplicity First (SF)
-Choose the simplest viable solution. Complex patterns need justification.
+### Simplicity First
+Choose the simplest viable solution. Complex patterns need explicit justification. Readable code over clever code.
 
-### Readability Priority (RP)
-Code must be immediately understandable by humans and AI.
+### Security By Default
+Validate all inputs. No secrets in code. Defense in depth. Least privilege principle.
 
-### Dependency Minimalism (DM)
-No new libraries without explicit request or compelling justification.
-
-### Security First (SecF)
-Validate all inputs, no secrets in code, defense in depth.
-
-### Test-Driven Thinking (TDT)
-Design all code to be testable from inception.
+### Test-Driven Thinking
+Design all code to be testable from inception. Write tests alongside code. Verify before committing.
 
 ## Code Style
 
@@ -45,6 +39,9 @@ Design all code to be testable from inception.
 - Functions: camelCase with verb prefixes
 - Variables: camelCase, booleans with is/has prefix
 - Constants: UPPER_SNAKE_CASE
+
+### Readability
+Code must be immediately understandable. Use descriptive naming. Maintain clear structure. Readable code over clever code.
 
 ### Formatting
 - Indentation: {{INDENTATION}}
@@ -69,4 +66,8 @@ Design all code to be testable from inception.
 - Atomic changes: small, self-contained modifications
 - Conventional commits: type(scope): description
 - Only modify files related to current task
-- Tag rule applications: [SF], [RP], [DM], etc.
+- Never add new dependencies without explicit approval or compelling justification
+- Use file-scoped commands. Reference docs instead of pasting. Optimize context window usage.
+- Follow established conventions for the relevant language and tech stack
+- Comment only complex logic or critical functions. Avoid documenting the obvious.
+- After generating code, argue against your own solution. Check for redundancy, unnecessary complexity, or simpler alternatives.

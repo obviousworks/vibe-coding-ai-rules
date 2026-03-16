@@ -158,13 +158,13 @@ Use abbreviations that AI can reference:
 ```markdown
 ## Core Principles
 
-* **Simplicity First (SF):** Choose simplest solution
-* **Readability Priority (RP):** Code must be immediately understandable
-* **Dependency Minimalism (DM):** No new libs without justification
-* **Security First (SecF):** Validate all inputs, no secrets in code
+1. **Clarify Before Coding:** Understand requirements before writing code. Ask questions when intent is unclear. No code without clear goals.
+2. **Simplicity First:** Choose the simplest viable solution. Complex patterns need explicit justification. Readable code over clever code.
+3. **Security By Default:** Validate all inputs. No secrets in code. Defense in depth. Least privilege principle.
+4. **Test-Driven Thinking:** Design all code to be testable from inception. Write tests alongside code. Verify before committing.
 ```
 
-When AI applies these, it references: `[SF] Chose simple forEach over complex reduce` or `[SecF] Added input validation with Zod`
+When AI applies these, it references the relevant principle in its reasoning.
 
 ### 5. Use Positive and Negative Examples
 

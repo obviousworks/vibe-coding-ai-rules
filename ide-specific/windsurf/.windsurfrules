@@ -1,130 +1,130 @@
-<project_description>
-### Project Description
+<core_principles>
+## Core Principles
 
-**"{{PROJECT_NAME}}"** - {{PROJECT_DESCRIPTION}}
-</project_description>
+- **Clarify Before Coding:** Understand requirements before writing code. Ask questions when intent is unclear. No code without clear goals.
+- **Simplicity First:** Choose the simplest viable solution. Complex patterns need explicit justification. Readable code over clever code.
+- **Security By Default:** Validate all inputs. No secrets in code. Defense in depth. Least privilege principle.
+- **Test-Driven Thinking:** Design all code to be testable from inception. Write tests alongside code. Verify before committing.
+</core_principles>
 
-<main_goals>
-### Main Goals
+<code_style>
+## Code Style
 
-- {{GOAL_1}}
-- {{GOAL_2}}
-- {{GOAL_3}}
-</main_goals>
+### Naming
+- Components/Classes: PascalCase
+- Functions/Methods: camelCase with verb prefixes (getUser, calculateTotal)
+- Variables: camelCase; booleans use is/has prefix (isLoading, hasError)
+- Constants: UPPER_SNAKE_CASE
+- Types/Interfaces: PascalCase
 
-<architecture_overview>
-### Architecture Overview
+### Formatting
+- Trailing commas in multi-line structures
+- Explicit return types on all functions
+- One concept per file; keep files under 300 lines
+- Functions under 30 lines; refactor if longer
 
-- **Type:** {{ARCHITECTURE_TYPE}}
-- **Backend:** {{BACKEND_ARCHITECTURE}}
-</architecture_overview>
+### Do
+- Use strict/explicit types (no `any`; use `unknown` + type guards)
+- Prefer composition over inheritance
+- Use named constants instead of magic values
+- Add JSDoc/TSDoc for public API functions
 
-<technology_stack>
-## Technology Stack
+### Do Not
+- No business logic in UI components
+- No inline styles (use CSS framework)
+- No unhandled promise rejections
+- No commented-out code in commits
+</code_style>
 
-* **Primary Programming Languages:**
-  * {{PRIMARY_LANGUAGE}} ({{LANGUAGE_VERSION}})
-  * {{SECONDARY_LANGUAGE}} ({{LANGUAGE_VERSION}}) (if applicable)
+<security>
+## Security Rules
 
-* **Frameworks/Libraries:**
-  * Frontend: {{FRONTEND_FRAMEWORKS}}
-  * Backend: {{BACKEND_FRAMEWORKS}}
-  * State Management: {{STATE_MANAGEMENT}}
-  * Testing: {{TESTING_FRAMEWORKS}}
+### Input Validation
+- Validate ALL user input with schema validation (Zod, Pydantic, etc.)
+- Never trust client-side data
+- Sanitize HTML before rendering
+- Validate file uploads: MIME type, extension, max size
 
-* **Databases:**
-  * {{PRIMARY_DB}} ({{DB_PURPOSE}})
-  * {{SECONDARY_DB}} ({{DB_PURPOSE}}) (if applicable)
-  * {{CACHE_DB}} (caching) (if applicable)
+### Injection Prevention
+- NEVER concatenate SQL strings -- use parameterized queries only
+- NEVER pass user input to shell commands
+- NEVER use eval() or Function() with user data
+- NEVER use dangerouslySetInnerHTML without sanitization
 
-* **Additional Tools/Technologies:**
-  * {{TOOL_1}}
-  * {{TOOL_2}}
-  * {{TOOL_3}}
+### Secrets
+- No secrets in source code -- environment variables only
+- No credentials in client-side code
+- Never commit .env files; use .env.example with dummy values
+- All AI-generated code requires human security review
+</security>
 
-* **Explicitly DO NOT use:**
-  * {{BANNED_DEPENDENCY_1}} (use {{ALTERNATIVE_1}} instead)
-  * {{BANNED_DEPENDENCY_2}} (use {{ALTERNATIVE_2}} instead)
-</technology_stack>
+<testing>
+## Testing Standards
 
-<project_structure>
-## Project Structure
+### Structure
+- Arrange-Act-Assert (AAA) pattern for all tests
+- One assertion concept per test
+- Descriptive names: "should [behavior] when [condition]"
 
-* **Directory Structure:**
-```
-{{PROJECT_STRUCTURE_TREE}}
-```
+### Coverage Targets
+- Critical paths: 80% minimum
+- Security code: 90% minimum
+- Utilities/helpers: 95% minimum
 
-* **Reusable Components/Modules:**
-  * {{SHARED_MODULE_1}} - {{MODULE_DESCRIPTION}}
-  * {{SHARED_MODULE_2}} - {{MODULE_DESCRIPTION}}
-</project_structure>
+### Types
+- Unit: isolated, fast, no external dependencies
+- Integration: component interactions, API endpoints
+- E2E: critical user journeys only
 
-<coding_style>
-## Coding Style and Conventions
-
-* **Language-Specific Style Guides:**
-  * {{LANGUAGE}}: {{STYLE_GUIDE}}
-
-* **Naming Conventions:**
-  * PascalCase for components, interfaces, types, and classes
-  * camelCase for variables, functions, and instances
-  * UPPER_SNAKE_CASE for constants
-  * {{ADDITIONAL_NAMING_RULES}}
-
-* **Specific Formatting Rules:**
-  * Indentation: {{INDENTATION}}
-  * Maximum line length: {{LINE_LENGTH}} characters
-  * Quotes: {{QUOTE_STYLE}}
-  * Trailing commas: required in multiline structures
-  * Semicolons: {{SEMICOLONS}}
-
-* **Comment Guidelines:**
-  * Use JSDoc/TSDoc for public API functions
-  * Inline comments only for non-obvious solutions
-  * Never commit .env files — use .env.example with dummy values
-</coding_style>
+### Anti-Patterns to Avoid
+- No test interdependencies
+- No hardcoded test data (use factories/fixtures)
+- No testing implementation details
+- Mock external dependencies, not internal logic
+</testing>
 
 <workflow>
 ## Workflow
 
-* **Testing Strategy:**
-  * Unit tests for utilities and pure functions (>{{COVERAGE_TARGET}}% coverage)
-  * Integration tests for API endpoints and services
-  * E2E tests for critical user flows
+### Changes
+- Atomic: small, self-contained modifications
+- Scope: only modify files related to the current task
+- No unrelated "improvements" without permission
+- Preserve existing code style and formatting
 
-* **Deployment Process:**
-  * {{DEPLOYMENT_STRATEGY}}
+### Commits
+- Conventional format: type(scope): description
+- Types: feat, fix, docs, style, refactor, test, chore
+- Clear, descriptive messages explaining *why* not *what*
 
-* **Branching Strategy:**
-  * Feature branches: `feature/feature-name`
-  * Bugfix branches: `fix/issue-description`
-  * Release branches: `release/v1.2.3`
+### Token Efficiency
+- Keep requests focused on specific files or functions
+- Avoid regenerating large blocks; prefer targeted edits
+- Break large tasks into smaller, sequential steps
+
+### Dependency Governance
+- Never add new dependencies without explicit approval or compelling justification
+
+### Industry Standards
+- Follow established conventions for the relevant language and tech stack
+
+### Strategic Documentation
+- Comment only complex logic or critical functions. Avoid documenting the obvious.
+
+### Self-Review Before Commit
+- After generating code, argue against your own solution. Check for redundancy, unnecessary complexity, or simpler alternatives.
+
+### Communication
+- Explain reasoning when choosing between conflicting approaches
+- Flag security concerns immediately
 </workflow>
 
-<ai_interaction>
-## AI Interaction
+<uncertainty>
+## When Uncertain
 
-* **Focus in Requests:**
-  * Limit scope to specific files or functions
-  * Provide clear acceptance criteria
-  * Use custom tags for structured requests
-
-* **Handling Existing Code:**
-  * Preserve formatting and style of surrounding code
-  * Leave existing comments intact unless specifically editing them
-  * Match abstraction level of current implementation
-
-* **Feedback on Rules:**
-  * Tag rule applications with abbreviations: [SF], [DRY], etc.
-  * Explain reasoning when choosing between conflicting rules
-</ai_interaction>
-
-<additional_notes>
-## Additional Notes
-
-* **Important Patterns/Architectural Principles:**
-  * {{PATTERN_1}}
-  * {{PATTERN_2}}
-  * {{PATTERN_3}}
-</additional_notes>
+- Ask clarifying questions before implementing
+- Propose a plan with alternatives and tradeoffs
+- Reference existing patterns in the codebase
+- Start small, get feedback, then iterate
+- Clearly state when a request exceeds available context
+</uncertainty>

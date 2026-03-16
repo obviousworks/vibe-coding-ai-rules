@@ -146,5 +146,5 @@ pnpm build          # Build
   * Ask clarifying questions before implementing
   * Propose plan for complex changes
   * Reference existing patterns
-  * Tag rule applications: [SF], [RP], [DM]
+  * Reference core principles when explaining decisions
 </ai_interaction>

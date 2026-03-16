@@ -1,5 +1,8 @@
 # Code Style Guidelines
 
+## Readability
+Code must be immediately understandable. Use descriptive naming. Maintain clear structure. Readable code over clever code.
+
 ## Naming Conventions
 - Files: {{FILE_NAMING}} (e.g., kebab-case.tsx, snake_case.py)
 - Components/Classes: PascalCase

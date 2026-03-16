@@ -12,16 +12,11 @@
 ### DO NOT Use
 {{BANNED_DEPENDENCIES}}
 
-## Core Principles
+## Core Rules
 
-1. **Clarify Before Coding** — Understand requirements before writing code. Ask questions when intent is unclear. No code without clear goals.
-2. **Simplicity First** — Choose the simplest viable solution. Complex patterns need explicit justification. Readable code over clever code.
-3. **Security By Default** — Validate all inputs. No secrets in code. Defense in depth. Least privilege principle.
-4. **Test-Driven Thinking** — Design all code to be testable from inception. Write tests alongside code. Verify before committing.
-
-## Additional Rules
-
-- No new dependencies without explicit approval or compelling justification
+- Clarify intent before generating code — no guessing at business logic
+- Choose simplest viable solution — justify any added complexity
+- No new dependencies without explicit approval
 - Validate ALL user input ({{VALIDATION_LIBRARY}})
 - Never store secrets in source code — use environment variables
 - Never concatenate SQL — use parameterized queries only
@@ -29,7 +24,6 @@
 
 ## Code Style
 
-- Code must be immediately understandable. Use descriptive naming. Maintain clear structure. Readable code over clever code.
 - Files: {{FILE_NAMING}} (e.g., `kebab-case.tsx`, `snake_case.py`)
 - Components/Classes: PascalCase
 - Functions: camelCase with verb prefixes (e.g., `getUserData`, `calculateTotal`)
@@ -71,10 +65,6 @@
 - Only modify files related to the current task
 - Run `{{LINT_COMMAND}}` before committing
 - Always run `{{TEST_COMMAND}}` after modifying code
-- Use file-scoped commands. Reference docs instead of pasting. Optimize context window usage.
-- Follow established conventions for the relevant language and tech stack
-- Comment only complex logic or critical functions. Avoid documenting the obvious.
-- After generating code, argue against your own solution. Check for redundancy, unnecessary complexity, or simpler alternatives.
 
 ## When Uncertain
 

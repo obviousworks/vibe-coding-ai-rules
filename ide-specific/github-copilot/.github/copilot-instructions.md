@@ -20,12 +20,10 @@
 
 ## Core Principles
 
-1. **Problem Clarity First**: Clarify intent before generating code. No code without clear requirements.
-2. **Simplicity First**: Choose the simplest viable solution. Complex patterns need justification.
-3. **Readability Priority**: Code must be immediately understandable by humans and AI.
-4. **Dependency Minimalism**: No new libraries without explicit request or justification.
-5. **Security First**: Validate all inputs, no secrets in code, defense in depth.
-6. **Test-Driven Thinking**: Design all code to be testable from inception.
+1. **Clarify Before Coding**: Understand requirements before writing code. Ask questions when intent is unclear. No code without clear goals.
+2. **Simplicity First**: Choose the simplest viable solution. Complex patterns need explicit justification. Readable code over clever code.
+3. **Security By Default**: Validate all inputs. No secrets in code. Defense in depth. Least privilege principle.
+4. **Test-Driven Thinking**: Design all code to be testable from inception. Write tests alongside code. Verify before committing.
 
 ## Setup Commands
 
@@ -40,7 +38,11 @@
 - Atomic changes: small, self-contained modifications
 - Conventional commits: `type(scope): description`
 - Only modify files directly related to the current task
-- Tag rule applications with abbreviations: [SF], [RP], [DM]
+- Never add new dependencies without explicit approval or compelling justification
+- Use file-scoped commands. Reference docs instead of pasting. Optimize context window usage.
+- Follow established conventions for the relevant language and tech stack
+- Comment only complex logic or critical functions. Avoid documenting the obvious.
+- After generating code, argue against your own solution. Check for redundancy, unnecessary complexity, or simpler alternatives.
 
 ## When Uncertain
 - Ask clarifying questions before implementing
