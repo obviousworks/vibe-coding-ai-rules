@@ -1,0 +1,58 @@
+I need you to help me create a tailored .windsurfrules file for my project that follows the "Vibe-Coding" methodology for AI-assisted development in WindSurf IDE. I'll provide details about my project, and I want you to generate a comprehensive configuration file similar to the example below but customized for my specific needs.
+My Project Information
+Project Name: {{PROJECT_NAME}}
+Project Description: {{PROJECT_DESCRIPTION}}
+Main Goals:
+{{LIST_OF_PROJECT_GOALS}}
+Project Type: {{PROJECT_TYPE}} (e.g., Mobile App, Web Application, API Service, Desktop Application, etc.)
+Technology Preferences
+Primary Programming Languages:
+{{PREFERRED_PROGRAMMING_LANGUAGES}}
+Preferred Frameworks/Libraries:
+{{PREFERRED_FRAMEWORKS_LIBRARIES}}
+Database Technologies:
+{{DATABASE_PREFERENCES}}
+Additional Tools/Technologies:
+{{ADDITIONAL_TOOLS}}
+Technologies to Explicitly Avoid:
+{{TECHNOLOGIES_TO_AVOID}}
+Project Structure
+Preferred Directory Structure:
+{{DIRECTORY_STRUCTURE_PREFERENCES}}
+Key Modules/Components:
+{{KEY_MODULES_COMPONENTS}}
+Development Guidelines
+Coding Style Preferences:
+{{CODING_STYLE_PREFERENCES}}
+Testing Strategy:
+{{TESTING_STRATEGY}}
+Deployment Process:
+{{DEPLOYMENT_PROCESS}}
+Performance Considerations:
+{{PERFORMANCE_CONSIDERATIONS}}
+Security Requirements:
+{{SECURITY_REQUIREMENTS}}
+Special Instructions
+Known Challenges:
+{{KNOWN_CHALLENGES}}
+Additional Instructions:
+{{ADDITIONAL_INSTRUCTIONS}}
+
+Based on this information, please create a comprehensive .windsurfrules file that follows the Vibe-Coding methodology. The file should include:
+
+A detailed project context section
+A complete technology stack specification with versions
+A well-structured directory tree
+Specific coding conventions and style guidelines
+Workflow protocols for AI-assisted development
+Custom rules for AI interaction within this project
+Performance and security considerations
+Any project-specific patterns or architectural principles
+
+Please format the output as a complete Markdown file that I can use directly as my .windsurfrules file in WindSurf. Include all sections from the example (Project Context, Technology Stack, Project Structure, etc.) but tailored to my specific project needs.
+Use a structured approach with clear headings, bulleted lists, and code blocks where appropriate. Include both high-level guidelines and specific technical details to provide comprehensive guidance for the AI.
+
+Here is the a special .windsurfrules file for a Pomodoro Timer App: 
+'''
+{{conten of the .windsurfrules file))
+'''
