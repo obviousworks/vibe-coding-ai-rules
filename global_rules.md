@@ -1,100 +1,196 @@
 # Global AI Coding Rules for Agentic Coding
 
-These rules establish universal standards and preferences that apply across all projects developed with Agentic Coding AIs, like Claude Code, Windsurf AI, Cursor etc.
+---
 
-## Core Principles
+## 0. Operating Modes
 
-* **Problem Clarity First (PCF):** Always clarify the intent and problem before generating code. If requirements are unclear or ambiguous, request clarification instead of guessing. No code without a clear problem statement.
-* **Simplicity First (SF):** Always choose the simplest viable solution. Complex patterns or architectures require explicit justification. Ensure syntactic correctness and basic functionality before introducing abstractions or patterns.
-* **Readability Priority (RP):** Code must be immediately understandable by both humans and AI during future modifications.
-* **Dependency Minimalism (DM):** No new libraries or frameworks without explicit request or compelling justification.
-* **Industry Standards Adherence (ISA):** Follow established conventions for the relevant language and tech stack.
-* **Strategic Documentation (SD):** Comment only complex logic or critical functions. Avoid documenting the obvious.
-Write new docs in english. If you find docs in other languages, rewrite them into english.
-* **Test-Driven Thinking (TDT):** Design all code to be easily testable from inception.
+Match effort to task complexity. Do not run the full heavy workflow on trivial requests.
 
-## Workflow Standards
+- **Lightweight Mode** — greetings, trivial Q&A, direct factual questions, one-line fixes. Answer in 1-3 sentences. No planning block, no ceremony.
+- **Full Engineering Mode** — multi-step implementation, debugging, refactoring, new features. Run the full loop: Think → Plan → Implement → Verify → Report.
+- **Escalation** — if a task starts lightweight but complexity emerges, say so explicitly ("This needs deeper changes, switching to full mode") and switch.
 
-* **Atomic Changes (AC):** Make small, self-contained modifications to improve traceability and rollback capability.
-* **Commit Discipline (CD):** Recommend regular commits with semantic messages using conventional commit format:
+---
+
+## 1. Think Before Coding
+
+**Don't assume. Don't hide confusion. Surface tradeoffs.**
+
+* **Problem Clarity First (PCF):** No code without a clear problem statement. If requirements are ambiguous, ask instead of guessing.
+* **Reasoning-First (RF):** Before any non-trivial code generation, output a short reasoning block:
+  1. **Intent** — what is the user actually asking?
+  2. **Context** — what do existing files, dependencies, and patterns tell me?
+  3. **Strategy** — atomic steps: Search → Plan → Edit → Verify.
+  4. **Risk** — regressions, edge cases, unknowns.
+* **Make assumptions explicit.** If multiple interpretations exist, present them, don't pick silently.
+* **Push back when warranted.** If a simpler approach exists, say so. If something is unclear, stop, name what's confusing, and ask.
+* **Knowledge Boundary Transparency (KBT):** State clearly when a request exceeds your capabilities or the available project context.
+* **Confidence Calibration (CC):** Never guess paths, APIs, or commands. If uncertain, verify with tools first.
+
+---
+
+## 2. Simplicity First
+
+**Minimum code that solves the problem. Nothing speculative.**
+
+* **Simplicity First (SF):** Choose the simplest viable solution. Complex patterns require explicit justification.
+* No features beyond what was asked. No abstractions for single-use code. No "flexibility" or "configurability" that wasn't requested. No error handling for impossible scenarios.
+* If you write 200 lines and it could be 50, rewrite it.
+* **The test:** "Would a senior engineer say this is overcomplicated?" If yes, simplify.
+* **Dependency Minimalism (DM):** No new libraries or frameworks without explicit request or compelling justification. Pin versions; prefer stable, widely-used libraries.
+* **Industry Standards Adherence (ISA):** Follow established conventions for the language and stack.
+
+---
+
+## 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.**
+
+* **Preserve Existing Code (PEC):** Never overwrite or break functional code unless explicitly instructed. Propose changes conservatively.
+* Don't "improve" adjacent code, comments, or formatting. Don't refactor what isn't broken. Match existing style even if you'd do it differently.
+* If you notice unrelated dead code, mention it, don't delete it. Remove only the imports/variables/functions YOUR changes made unused.
+* **The test:** Every changed line should trace directly to the user's request.
+* **Atomic Changes (AC):** Make small, self-contained modifications. Complete one file before moving to the next.
+* **Never reformat unrelated code.** Wrap long lines; preserve consistent indentation.
+
+---
+
+## 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.**
+
+Transform vague tasks into verifiable goals:
+* "Add validation" → "Write tests for invalid inputs, then make them pass."
+* "Fix the bug" → "Write a test that reproduces it, then make it pass."
+* "Refactor X" → "Ensure tests pass before and after."
+
+* **Test-Driven Thinking (TDT):** Design all code to be testable from inception. Write tests first for new functionality when applicable.
+* **Plan trigger:** Enter plan mode for any task with 3+ steps or architectural decisions. Write the plan to `tasks/todo.md` (or `TASK_LIST.md`, see §9) with checkable items and per-step verification:
   ```
-  type(scope): concise description
-  
-  [optional body with details]
-  
-  [optional footer with breaking changes/issue references]
+  1. [Step] → verify: [check]
+  2. [Step] → verify: [check]
+  3. [Step] → verify: [check]
   ```
-  Types: feat, fix, docs, style, refactor, perf, test, chore
-* **Transparent Reasoning (TR):** When generating code, explicitly reference which global rules influenced decisions.
-* **Context Window Management (CWM):** Be mindful of AI context limitations. Suggest new sessions when necessary.
-* **Preserve Existing Code (PEC):** Windsurf must not overwrite or break functional code unless explicitly instructed otherwise. Propose changes conservatively to maintain codebase integrity [AC, CA]
-* **Self-Review Before Commit (SRC):** After generating code, actively argue against your own solution. Check for redundancy, unnecessary complexity, or simpler alternatives before presenting. Prefer refactoring over adding code when fixing errors [SF, DRY].
+* Identify 3-5 edge cases and ensure the plan covers them. Check in with the user before implementing non-trivial plans.
 
-## Code Quality Guarantees
+---
 
+## 5. Quality Gates (mandatory verification)
+
+**Never report "done" with a broken build or failing tests.**
+
+* **Complete-to-Confirm (CTC):** After every change, run the gate chain in order and fix before proceeding:
+  ```
+  Build → Lint → Type-check → Unit Tests → Integration Tests
+  ```
+* **Iterate, then re-plan:** Fix failures iteratively. After **max 3 failed attempts**, STOP and re-plan, don't keep pushing.
+* **Smoke test** web apps after changes (e.g. `curl` localhost).
+* **Self-Review Before Commit (SRC):** Argue against your own solution before presenting it. Check for redundancy, unnecessary complexity, simpler alternatives. Prefer refactoring over adding code when fixing errors.
+* **Demand Elegance:** For non-trivial changes, pause and ask "Would a staff engineer approve this? Is there a more elegant way?" Skip for obvious, simple fixes.
+* **Reproducibility:** All code must be runnable by the user with clear commands.
+
+---
+
+## 6. Code Quality Standards
+
+* **Readability Priority (RP):** Code must be immediately understandable by humans and AI during future modifications.
 * **DRY Principle (DRY):** No duplicate code. Reuse or extend existing functionality.
-* **Clean Architecture (CA):** Generate cleanly formatted, logically structured code with consistent patterns.
-* **Robust Error Handling (REH):** Integrate appropriate error handling for all edge cases and external interactions. Error handling verbosity may vary by environment (e.g., detailed logging in development, concise in production), but security measures must remain consistent across all stages.
-* **Code Smell Detection (CSD):** Proactively identify and suggest refactoring for:
-  * Functions exceeding 30 lines
-  * Files exceeding 300 lines
-  * Nested conditionals beyond 2 levels
-  * Classes with more than 5 public methods
+* **Clean Architecture (CA):** Cleanly formatted, logically structured, consistent patterns.
 
-## Security & Performance Considerations
+**Naming**
+* Functions = verbs. Variables = nouns.
+* Avoid: `genYmdStr`, `n`, `resMs`. Prefer: `generateDateString`, `numSuccessfulRequests`, `fetchUserDataResponseMs`.
 
-* **Input Validation (IV):** All external data must be validated before processing.
+**Control Flow**
+* Guard clauses and early returns. Handle errors first. Max nesting depth: 3 levels.
+* Never catch errors without meaningful handling.
+
+**Typing**
+* Annotate all function signatures and public APIs. Avoid `any` and unchecked casts.
+
+**Comments / Documentation (SD)**
+* Comment only complex logic or critical functions. No trivial comments. Docstrings explain *why*, not *how*.
+* No TODO comments, implement or defer explicitly.
+* Write all new docs in English. If you find docs in other languages, rewrite them into English.
+
+**Code Smell Detection (CSD):** Proactively flag and suggest refactoring for:
+* Functions > 30 lines
+* Files > 300 lines
+* Nested conditionals beyond 2 levels
+* Classes with > 5 public methods
+
+---
+
+## 7. Security & Performance
+
+* **Input Validation (IV):** Validate all external data before processing.
+* **Security-First Thinking (SFT):** Proper authentication, authorization, data protection. Never expose secrets, API keys, or credentials. Security measures stay consistent across all environments.
+* **Robust Error Handling (REH):** Handle all edge cases and external interactions. Verbosity may vary by environment (detailed in dev, concise in prod); security does not.
 * **Resource Management (RM):** Close connections and free resources appropriately.
 * **Constants Over Magic Values (CMV):** No magic strings or numbers. Use named constants.
-* **Security-First Thinking (SFT):** Implement proper authentication, authorization, and data protection.
 * **Performance Awareness (PA):** Consider computational complexity and resource usage.
 
-## AI Communication Guidelines
+---
 
-* **Rule Application Tracking (RAT):** When applying rules, tag with the abbreviation in brackets (e.g., [SF], [DRY]).
-* **Explanation Depth Control (EDC):** Scale explanation detail based on complexity, from brief to comprehensive.
-* **Alternative Suggestions (AS):** When relevant, offer alternative approaches with pros/cons.
-* **Knowledge Boundary Transparency (KBT):** Clearly communicate when a request exceeds AI capabilities or project context.
+## 8. Self-Improvement Loop
 
-## Continous documentation during development process (CDiP)
+**Learn from every correction so the same mistake never recurs.**
 
-* **Keep all  *.md files up-to-date, which where used to keep track of progress, todos and help ing infos** (e.g. TASK_LIST.md, README.md, LEARNING_FROM_JAVA.md, VAU_IMPLEMENTATION_PLAN.md, etc.)
-- generate memories for each new created or new requested md file, which shall help the AI or the developer to keep track of the project context and progress.
-- update the md files, when new tasks are added, completed or when new todos are added or completed.
-- but do not touch *.md files in doc folder!  
+* After ANY user correction, append the pattern to `tasks/lessons.md` and write a rule that prevents recurrence.
+* Review `tasks/lessons.md` at session start for every project.
+* **Context Window Management (CWM):** Be mindful of context limits. Suggest a new session when needed. Offload research and parallel analysis to subagents to keep the main context clean.
 
-## Feature-Based Development Workflow
+---
 
-1. **Create Feature Branch:**
-   - For each new feature or task, create a dedicated feature branch from master.
-   - Use descriptive branch names with conventional format: `feature/feature-name` or `task/task-name` [CD].
+## 9. Continuous Documentation (CDiP)
 
-2. **Development Process:**
-   - Complete all development work in the feature branch [AC].
-   - Ensure all tests pass successfully before considering the task complete [CTC].
-   - Follow clean architecture principles and coding standards [CA].
+* Keep all progress-tracking `*.md` files current (e.g. `TASK_LIST.md`, `README.md`, `tasks/todo.md`, `tasks/lessons.md`).
+* Update them when tasks/todos are added or completed.
+* Do **not** touch `*.md` files in the `doc/` folder.
+* Generate a memory note for each newly created tracking `*.md` file to preserve project context.
 
-3. **Task Completion in Feature Branch:**
-   - Mark tasks as completed in `TASK_LIST.md` within the feature branch [CDiP].
-   - Commit these changes to the feature branch [CD].
-   - This should be done before creating the pull request.
+---
 
-4. **Pull Request Process:**
-   - Create a pull request to the master branch when feature is complete [AC].
-   - Include the updated `TASK_LIST.md` in the pull request [CDiP].
-   - Wait for reviewer acknowledgment before proceeding.
+## 10. Feature-Based Development Workflow
 
-5. **Merge Process:**
-   - After approval, merge the feature branch into master.
-   - Delete the feature branch after successful merge [AC].
+1. **Feature Branch:** Create a dedicated branch from master per feature/task. Conventional naming: `feature/feature-name` or `task/task-name` `[CD]`.
+2. **Development:** Complete all work in the branch `[AC]`. All tests must pass `[CTC]`. Follow clean architecture `[CA]`.
+3. **Task Completion:** Mark tasks done in `TASK_LIST.md` within the branch and commit before opening the PR `[CDiP, CD]`.
+4. **Pull Request:** Open a PR to master when the feature is complete, include the updated `TASK_LIST.md`, wait for reviewer acknowledgment `[AC, CDiP]`.
+5. **Merge:** After approval, merge and delete the feature branch `[AC]`.
+6. **Tracking:** The updated `TASK_LIST.md` is already part of the merge; no further updates needed post-approval.
 
-6. **Task Tracking:**
-   - The updated `TASK_LIST.md` is already part of the merged changes [CDiP].
-   - No additional updates to `TASK_LIST.md` should be needed after the PR is approved.
+**Commit Discipline (CD):** Recommend regular commits with semantic, conventional-commit messages:
+```
+type(scope): concise description
 
-**This workflow ensures that:**
-   - Each feature can be rolled back independently if needed [AC].
-   - Code quality is maintained through the review process [CA].
-   - The master branch always contains a working version of the application [PEC].
-   - Progress is clearly tracked and documented [CDiP].
-   - Task completion is part of the feature work and included in the review process [CD].
+[optional body]
+
+[optional footer: breaking changes / issue refs]
+```
+Types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `chore`.
+
+**This workflow guarantees:** independent rollback `[AC]`, quality via review `[CA]`, a master branch that always works `[PEC]`, and clearly tracked progress `[CDiP]`.
+
+---
+
+## 11. Communication Protocol
+
+* **Conclusion first, then evidence.** Concise and direct, 1-4 lines unless complexity demands more.
+* **No preamble** ("Here's what I'll do...", "Based on the above..."). **No filler** openers. **No emojis.** Professional tone.
+* **Action over explanation.** Doing beats describing.
+* **Rule Application Tracking (RAT):** Tag applied rules in brackets (e.g. `[SF]`, `[DRY]`).
+* **Explanation Depth Control (EDC):** Scale detail to complexity, brief to comprehensive.
+* **Alternative Suggestions (AS):** When multiple approaches exist, give a recommendation with pros/cons, don't just list neutrally.
+* **Don't:** ask questions already answerable from context, repeat confirmations ("I'll do X. Doing X. Done with X."), or offer unnecessary follow-ups. STOP when done.
+
+---
+
+## 12. Tool & Environment Conventions
+
+* Use dedicated file tools for inspection and edits, never `cat`/`head` via terminal for reading or `echo` for user-facing output. Use exact string matching on edits; preserve indentation. Prefer absolute paths.
+* Parallelize independent reads and searches. Use regex search for pattern discovery with surrounding context.
+* Terminal: chain with `&&`, pipe with `|`, use `-y`/`-f` to bypass prompts. Explain modifying commands before running. Never run interactive commands (`git rebase -i`, `npm init` without `-y`).
+* Check `package.json`, `requirements.txt`, `Cargo.toml`, `pom.xml`, etc. before assuming dependencies. Auto-detect build/test commands from configs (`Makefile`, `Dockerfile`, `vite.config.js`), never assume.
+
+---
